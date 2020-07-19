@@ -6,7 +6,7 @@ OpeniCE
 * [芯片规格](#芯片规格)
 * [硬件说明](#硬件说明)
 	* [iCE40UP5K](iCE40UP5K)
-	* [iCELink](iCELink)
+	* [FTLink](FTLink)
 * [资源下载](#虚拟机镜像)
 * [开发环境搭建](#开发环境搭建)
 * [视频教程](#视频教程)
@@ -19,8 +19,8 @@ OpeniCE
 OpenICE 是基于Lattice iCE40UP5k设计的开源FPGA开发板，开发板小巧精致，资源丰富，板载RGB LED，KEY，TYPE-C-USB, RESET，大部分IO以标准PMOD接口引出，可与标准PMOD外设进行对接，方便日常的开发使用。  
 板载的调试器FTLINK是以FT2232H经过精心设计，支持官方的EDA进行下载调试，同时经过ICEProg就可实现轻松实现一些开源工具链的烧写。FTLINK亦支持虚拟串口以和FPGA进行通信。  
 Lattice的iCE40系列芯片在国外的开源创客社区中拥有大量拥趸，其所有的开发软件环境亦均为开源。一般来说，假若您使用Xilinx或者Altera系列的开发板，您需要安装复杂臃肿的IDE开发环境(而且一般为盗版，使用存在一定法律风险), 在未开始开发前，首先还先需要学会如何操作其复杂的IDE。 iCE40则使用完全开源的工具链进行开发，包括FPGA综合（yosys），布线（arachne-pnr & nextpnr）, 打包烧录（icestorm），编译（gcc），只需在Linux下输入数条命令，即可将整套工具链轻松安装，随后即可开始您的FPGA之旅，而且这一切都是开源的，您可仔细研究整个过程中任何一个细节的实现，非常适合个人研究学习，对于有丰富经验的开发者，亦可用来作为快速的逻辑验证平台。典型的基于iCE40系列的开源开发板有iCEBreaker、UPduino、BlackIce、iCEstick、TinyFPGA 等，社区中拥有丰富的demo可用于验证测试，或者作为自己开发学习的参考。
-![OpenICE_render](https://github.com/wuxx/OpenICE/blob/master/doc/OpenICE_render.jpg)
-![OpenICE](https://github.com/wuxx/OpenICE/blob/master/doc/OpenICE.jpg)
+![icesugar_render](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE-PCB.png)
+![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE.jpg)
 
 # 芯片规格 
 iCE40UP5K-SG48  
