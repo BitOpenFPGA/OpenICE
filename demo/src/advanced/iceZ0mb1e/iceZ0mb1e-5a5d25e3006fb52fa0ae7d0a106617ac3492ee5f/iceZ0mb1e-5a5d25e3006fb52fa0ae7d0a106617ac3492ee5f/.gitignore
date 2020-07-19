@@ -1,0 +1,15 @@
+synthesis
+.vscode
+simulation
+*.sym
+*.rel
+*.lst
+*.asm
+*.bin
+*.dasm
+*.hex
+*.ihx
+*.lk
+*.map
+*.noi
+*.vhex

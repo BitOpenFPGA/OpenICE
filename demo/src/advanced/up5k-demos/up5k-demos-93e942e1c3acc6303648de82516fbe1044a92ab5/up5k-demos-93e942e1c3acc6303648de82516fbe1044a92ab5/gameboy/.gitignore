@@ -1,0 +1,5 @@
+*.bin
+*.asc
+*.blif
+*.exp
+*.glb

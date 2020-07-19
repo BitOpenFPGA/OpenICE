@@ -1,0 +1,17 @@
+#
+# Pinmap for the iCESugar
+#
+set_io -nowarn pin_clk      35
+set_io -nowarn BTN_N        18
+set_io -nowarn pin_8        19
+set_io -nowarn pin_led      20
+set_io -nowarn pin_9        21
+
+set_io -nowarn flash_sck    15
+set_io -nowarn flash_cs     16
+set_io -nowarn flash_mosi   17
+set_io -nowarn flash_miso   14
+
+set_io -nowarn pin_usbp     10
+set_io -nowarn pin_usbn     9
+set_io -nowarn pin_pu       11

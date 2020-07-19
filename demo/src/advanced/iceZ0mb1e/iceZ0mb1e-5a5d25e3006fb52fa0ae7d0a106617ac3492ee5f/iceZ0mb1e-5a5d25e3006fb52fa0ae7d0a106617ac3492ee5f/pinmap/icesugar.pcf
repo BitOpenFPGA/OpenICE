@@ -1,0 +1,26 @@
+set_io LED_R 41
+set_io LED_G 39
+set_io LED_B 40
+
+#set_io D1 34
+set_io D1 42
+set_io D2 31
+set_io D3 27
+set_io D4 25
+set_io D5 32
+set_io D6 28
+set_io D7 26
+set_io D8 23
+
+set_io i2c_scl 18
+set_io i2c_sda 19
+
+set_io oled_rst 20
+
+set_io spi_cs   45
+set_io spi_sclk 36
+set_io spi_mosi 43
+set_io spi_miso 38
+
+set_io uart_rxd 4
+set_io uart_txd 6

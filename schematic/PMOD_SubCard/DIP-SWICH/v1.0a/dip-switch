@@ -1,0 +1,4 @@
+Reference, Quantity, Value, Footprint, Datasheet, Key, Source
+J1 ,1,"PMOD","pkl_connectors:PMODHeader_2x06_P2.54mm_Horizontal","~","conn-th-01in-6-2-hdr-ra","ANY"
+R1 R2 ,2,"10k","pkl_dipol:R_Array_Convex_4x0402","","res-0402cv-array-4-10k",""
+SW1 ,1,"SW_DIP_x08","Button_Switch_THT:SW_DIP_SPSTx08_Slide_9.78x22.5mm_W7.62mm_P2.54mm","","sw-dip-8-01in-pitch",""
