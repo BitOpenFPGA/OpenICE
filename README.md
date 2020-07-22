@@ -8,7 +8,7 @@ OpeniCE
 
 
 
-![icesugar_render](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/%E6%9E%84%E5%9B%BE.png?raw=true)
+![OpenICE](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/%E6%9E%84%E5%9B%BE.png?raw=true)
 
 
 
@@ -93,12 +93,12 @@ OpenICE 是基于Lattice iCE40UP5k设计的开源FPGA开发板，开发板以Ard
 
 整版的原理框图如下：
 
-![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/%E6%A1%86%E5%9B%BE.png?raw=true)
+![OpenICE](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/%E6%A1%86%E5%9B%BE.png?raw=true)
 
 PCB截图如下：
 
-![icesugar_render](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE-PCB.png?raw=true)
-![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE.jpg?raw=true)
+![OpenICE](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE-PCB.png?raw=true)
+![OpenICE](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE.jpg?raw=true)
 
 # 芯片规格 
 iCE40UP5K-SG48  
