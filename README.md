@@ -1,24 +1,114 @@
 OpeniCE
 -----------
-[中文](./README.md) [English](./README_en.md)
+[中文](./README.md)
+
+* [来源 ](#来源 ) 
+* [芯片规格](#芯片规格)
 
 * [OpenICE介绍](#OpenICE介绍) 
 * [芯片规格](#芯片规格)
 * [硬件说明](#硬件说明)
 	* [iCE40UP5K](iCE40UP5K)
-	* [FTLink](FTLink)
-* [资源下载](#虚拟机镜像)
 * [开发环境搭建](#开发环境搭建)
-* [视频教程](#视频教程)
 * [FPGA教程](#fpga教程)
-* [产品链接](#产品链接)
 * [参考](#参考)
 
 
+
+# 来源 
+
+开源FPGA应具备几个维度特点：
+
+
+
+![icesugar_render](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/%E6%9E%84%E5%9B%BE.png?raw=true)
+
+
+
+其中最难弄得就是工具链了，经过长时间查找，终于在GitHub上找到了一个FPGA的开源工具链Yosys，选择的理由如下：
+
+Intel Quartus II （No ）License
+
+Xilinx Vivado ISE (No) License
+
+Lattice Diamond (No) License 注册可以免费申请，但是随时可以收回（一般不会）
+
+ 
+
+ Yosys, nextpnr, icestorm, iverilog, symbiflow （YES） 整个工具链开源
+
+ 
+
+ 
+
+支持的硬件：
+
+http://www.clifford.at/icestorm/
+
+ 
+
+折中选择ICE40UP5K-SG48芯片。
+
+为什么选择ICE40系列FPGA呢？
+
+Lattice的iCE40系列芯片在国外很受欢迎，大部分的开发环境都是开源的，不需要担心License所带来的限制，只需要将工具链进行安装之后就可以进行FPGA的开发之路，典型的基于iCE40系列的开源开发板有iCEBreaker、UPduino、BlackIce、iCEstick、TinyFPGA 等。
+
+每个开发版对比如下：
+
+|                                         | iCEBreaker                       | TinyFPGA BX        | Tomu FPGA          | Lattice ICEstick              | UPDuino v2.0                  | ICE40UP5K Breakout            | Alhambra II                  | ICE40HX8K Breakout            |
+| :-------------------------------------- | :------------------------------- | :----------------- | :----------------- | :---------------------------- | :---------------------------- | :---------------------------- | :--------------------------- | :---------------------------- |
+| License                                 | OSHW                             | OSHW               | OSHW               | Closed                        | Closed                        | Closed                        | OSHW                         | Closed                        |
+| Price                                   | $65                              | $38                | $??                | ~$25                          | $13.99                        | $49                           | $59.90                       | $49                           |
+| Schematics Published?                   | Yes                              | Yes                | Not Yet            | Yes                           | Yes                           | Yes                           | Yes                          | Yes                           |
+| Design files Published?                 | Yes                              | Yes                | Not Yet            | No                            | Yes                           | No                            | Yes                          | No                            |
+| **FPGA**                                |                                  |                    |                    |                               |                               |                               |                              |                               |
+| Model                                   | iCE40UP5K                        | iCE40LP8K          | iCE40UP5K          | iCE40HX1K                     | iCE40UP5K                     | iCE40UP5K                     | iCE40HX4K(8K)                | iCE40HX8K                     |
+| Logic Capacity (LUTs)                   | 5280                             | 7680               | 5280               | 1280                          | 5280                          | 5280                          | 3520 (7680)                  | 7680                          |
+| Internal RAM (bits)                     | 120k + 1024k                     | 128k               | 120k + 1024k       | 64k                           | 120k + 1024k                  | 120k + 1024k                  | 80k                          | 128k                          |
+| Multipliers                             | 8                                | 0                  | 8                  | 0                             | 8                             | 8                             | 0                            | 0                             |
+| **Peripherals**                         |                                  |                    |                    |                               |                               |                               |                              |                               |
+| USB Interface                           | FTDI 2232HQ                      | On FPGA Bootloader | On FPGA Bootloader | FTDI 2232HL                   | FTDI 232HQ                    | FTDI 2232HL                   | FTDI 2232HQ                  | FTDI 2232HL                   |
+| USB HS FIFO/SPI interface to the FPGA   | Yes through Jumper Mod           | No                 | No                 | No                            | No                            | No                            | No                           | No                            |
+| USB Serial (UART) interface to the FPGA | Yes                              | No                 | No                 | Yes                           | No                            | Yes                           | Yes                          | Yes                           |
+| GPIO inline termination resistors       | Yes 33 Ohm                       | No                 | No                 | No                            | No                            | No                            | Yes 300 Ohm                  | No                            |
+| User IOs                                | 27 + 7                           | 41 + 2             | 4 + 2              | 18                            | 34                            | 34 + 2                        | 20                           | 90 + 10                       |
+| Pmod Connectors                         | 3                                | 0                  | 0                  | 1                             | 0                             | 1                             | 0                            | 0                             |
+| User Buttons                            | 1 Tact + 3 Tact on Breakoff Pmod | 1 CRESET           | 2 Capacitive       | 0                             | 0                             | 4 DIP                         | 2 Tact                       | 0                             |
+| User LED                                | 2 + 5 on Breakoff Pmod           | 1                  | 0                  | 5                             | 1 RGB                         | 1 RGB                         | 8                            | 8                             |
+| Indicator LED                           | PWR, CDONE                       | PWR                |                    |                               | CDONE, FTDI-TX/RX             | PWR, CDONE                    | PWR, CDONE, FTDI-TX/RX       | PWR, CDONE                    |
+| Onboard Clock                           | 12 MHz MEMS Shared with FTDI     | 16 MHz MEMS        | 12 MHz MEMS        | 12 MHz MEMS? Shared with FTDI | 12 MHz MEMS? Shared with FTDI | 12 MHz MEMS? Shared with FTDI | 12 MHz MEMS Shared with FTDI | 12 MHz MEMS? Shared with FTDI |
+| Flash                                   | 128 Mbit QSPI DDR                | 8 Mbit SPI         | 16 Mbit SPI        | 32 Mbit SPI                   | 32 Mbit SPI                   | 32 Mbit SPI                   | 32 Mbit SPI                  | 32 Mbit SPI                   |
+| **FPGA Power Delivery**                 |                                  |                    |                    |                               |                               |                               |                              |                               |
+| Dedicated GND/Power Planes              | Yes                              | Yes                | No                 | Yes                           | No                            | Yes                           | Yes                          | Yes                           |
+| Dedicated FPGA Bypass Capacitors        | 19                               | 8                  | 9                  | 18                            | 2                             | 19                            | ?                            | ?                             |
+| IO GND Connections                      | 11                               | 6                  | 1                  | 4                             | 3                             | 8                             | 22                           | 20                            |
+| **Software**                            |                                  |                    |                    |                               |                               |                               |                              |                               |
+| Open Source Toolchain                   | Yes                              | Yes                | Yes                | Yes                           | Yes                           | Yes                           | Yes                          | Yes                           |
+| APIO                                    | Yes                              | Yes                | Yes                | Yes                           | Yes                           | Yes                           | Yes                          | Yes                           |
+| icestudio                               | Yes                              | Yes                | Not Yet            | Yes                           | Yes                           | Yes                           | Yes                          | Yes                           |
+| migen                                   | Yes                              | Yes                | No                 | Yes                           | No                            | Yes                           | No                           | Yes                           |
+
+
+
+硬件上也可以参考：https://github.com/icebreaker-fpga/icebreaker-examples
+https://github.com/wuxx/icesugar
+
+
+
+其中icebreaker可以直接采购，但是国内买还是偏难，而且价格上也比较贵，icesugar由于不是使用官方的下载方式，不支持官方的EDA，这样在使用过程中还是有一些限制，综合考虑还是自己参考官方的DEMO和icebreaker自己做，原则上尽量减少改动。
+
+
+
+
 # OpenICE介绍 
-OpenICE 是基于Lattice iCE40UP5k设计的开源FPGA开发板，开发板小巧精致，资源丰富，板载RGB LED，KEY，TYPE-C-USB, RESET，大部分IO以标准PMOD接口引出，可与标准PMOD外设进行对接，方便日常的开发使用。  
-板载的调试器FTLINK是以FT2232H经过精心设计，支持官方的EDA进行下载调试，同时经过ICEProg就可实现轻松实现一些开源工具链的烧写。FTLINK亦支持虚拟串口以和FPGA进行通信。  
-Lattice的iCE40系列芯片在国外的开源创客社区中拥有大量拥趸，其所有的开发软件环境亦均为开源。一般来说，假若您使用Xilinx或者Altera系列的开发板，您需要安装复杂臃肿的IDE开发环境(而且一般为盗版，使用存在一定法律风险), 在未开始开发前，首先还先需要学会如何操作其复杂的IDE。 iCE40则使用完全开源的工具链进行开发，包括FPGA综合（yosys），布线（arachne-pnr & nextpnr）, 打包烧录（icestorm），编译（gcc），只需在Linux下输入数条命令，即可将整套工具链轻松安装，随后即可开始您的FPGA之旅，而且这一切都是开源的，您可仔细研究整个过程中任何一个细节的实现，非常适合个人研究学习，对于有丰富经验的开发者，亦可用来作为快速的逻辑验证平台。典型的基于iCE40系列的开源开发板有iCEBreaker、UPduino、BlackIce、iCEstick、TinyFPGA 等，社区中拥有丰富的demo可用于验证测试，或者作为自己开发学习的参考。
+OpenICE 是基于Lattice iCE40UP5k设计的开源FPGA开发板，开发板以Arduino为原型进行设计，资源丰富，板载RGB LED，KEY，TYPE-C-USB, RESET，大部分IO以标准PMOD接口引出，可与标准PMOD外设进行对接，方便日常的开发使用。  
+板载的调试器以FT2232H为核心设计，支持官方的EDA进行下载调试，同时经过ICEProg就可实现轻松实现一些开源工具链的烧写。FTLINK亦支持虚拟串口以和FPGA进行通信。  
+
+整版的原理框图如下：
+
+![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE.jpg?raw=true)
+
+PCB截图如下：
 
 ![icesugar_render](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE-PCB.png?raw=true)
 ![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE.jpg?raw=true)
@@ -38,16 +128,9 @@ iCE40UP5K-SG48
 1. SPI Flash使用W25Q64（8MB）/W25Q128(16MB)
 2. 板载按键开关、LED和RGB LED可用于测试
 3. 所有IO以标准PMOD接口引出，可用于开发调试
+4. 板载电源指示灯V8，方便查看整版电源情况
 
 
-
-
-# 虚拟机镜像
-链接：待更新 
-提取码：
-`user: ubuntu`  
-`passwd: ubuntu`  
-所有环境包括综合(yosys)，布线(nextpnr)，打包(icesorm)，编译器(gcc) 已经预制好，启动即可开始使用。
 
 # 开发环境搭建
 推荐使用虚拟机镜像进行开发测试，简单方便。  
@@ -60,7 +143,7 @@ gcc工具链安装请参考 [riscv-gnu-toolchain](https://pingu98.wordpress.com/
 
 
 # FPGA教程
-强烈推荐学习此教程，[open-fpga-verilog-tutorial](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_EN) `src/basic/open-fpga-verilog-tutorial`目录中有对应的例程
+[open-fpga-verilog-tutorial](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_EN) `src/basic/open-fpga-verilog-tutorial`目录中有对应的例程
 
 # 产品链接
 
