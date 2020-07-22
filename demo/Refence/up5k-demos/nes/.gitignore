@@ -1,0 +1,11 @@
+*.asc
+*.bin
+*.blif
+*.exp
+*.vvp
+*.blog
+*.log
+*.vlog
+*.json
+*.rpt
+

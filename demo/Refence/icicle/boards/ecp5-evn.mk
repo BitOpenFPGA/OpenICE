@@ -1,6 +1,0 @@
-ARCH     = ecp5
-SPEED    = 8
-DEVICE   = um5g-85k
-PACKAGE  = CABGA381
-FREQ_OSC = 12
-PROGMEM  = ram

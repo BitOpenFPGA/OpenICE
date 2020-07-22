@@ -1,16 +1,5 @@
 OpeniCE
 -----------
-[中文](./README.md)
-
-* [来源 ](#来源 ) 
-* [OpenICE介绍](#OpenICE介绍) 
-* [芯片规格](#芯片规格)
-* [硬件说明](#硬件说明)
-	* [iCE40UP5K](iCE40UP5K)
-* [开发环境搭建](#开发环境搭建)
-* [FPGA教程](#fpga教程)
-* [参考](#参考)
-
 
 
 # 来源 
@@ -90,18 +79,17 @@ Lattice的iCE40系列芯片在国外很受欢迎，大部分的开发环境都�
 
 
 硬件上也可以参考：https://github.com/icebreaker-fpga/icebreaker-examples
-https://github.com/wuxx/icesugar
 
 
 
-其中icebreaker可以直接采购，但是国内买还是偏难，而且价格上也比较贵，icesugar由于不是使用官方的下载方式，不支持官方的EDA，这样在使用过程中还是有一些限制，综合考虑还是自己参考官方的DEMO和icebreaker自己做，原则上尽量减少改动。
+其中icebreaker可以直接采购，但是国内买还是偏难，而且价格上也比较贵，综合考虑还是自己参考官方的DEMO和icebreaker自己做，原则上尽量减少改动。
 
 
 
 
 # OpenICE介绍 
 OpenICE 是基于Lattice iCE40UP5k设计的开源FPGA开发板，开发板以Arduino为原型进行设计，资源丰富，板载RGB LED，KEY，TYPE-C-USB, RESET，大部分IO以标准PMOD接口引出，可与标准PMOD外设进行对接，方便日常的开发使用。  
-板载的调试器以FT2232H为核心设计，支持官方的EDA进行下载调试，同时经过ICEProg就可实现轻松实现一些开源工具链的烧写。FTLINK亦支持虚拟串口以和FPGA进行通信。  
+板载的调试器以FT2232H为核心设计，支持官方的EDA进行下载调试，同时经过开源工具链ICEProg就可实现轻松实现烧写。FT2232H同时支持虚拟串口和FPGA进行通信。  
 
 整版的原理框图如下：
 
@@ -126,25 +114,28 @@ iCE40UP5K-SG48
 ### iCE40UP5K
 1. SPI Flash使用W25Q64（8MB）/W25Q128(16MB)
 2. 板载按键开关、LED和RGB LED可用于测试
-3. 所有IO以标准PMOD接口引出，可用于开发调试
+3. 所有IO以标准PMOD接口引出
 4. 板载电源指示灯V8，方便查看整版电源情况
 
+**Capable enough to host CPU softcores**
 
+- [picorv32](https://github.com/cliffordwolf/picorv32/)
+- [picosoc](https://github.com/cliffordwolf/picorv32/tree/master/picosoc)
+- [RISC-V](https://riscv.org/) and others
 
 # 开发环境搭建
 推荐使用虚拟机镜像进行开发测试，简单方便。  
 FPGA工具链安装请参考[icestorm](http://www.clifford.at/icestorm/)  
 gcc工具链安装请参考 [riscv-gnu-toolchain](https://pingu98.wordpress.com/2019/04/08/how-to-build-your-own-cpu-from-scratch-inside-an-fpga/)  
-`icesprog`是为OpenICE开发的命令行烧写工具，仓库中已经提供，依赖libusb和hidapi，若自行搭建环境需要安装依赖的库  
-`$sudo apt-get install libhidapi-dev`  
-`$sudo apt-get install libusb-1.0-0-dev`  
 
 
 
 # FPGA教程
-[open-fpga-verilog-tutorial](https://github.com/Obijuan/open-fpga-verilog-tutorial/wiki/Home_EN) `src/basic/open-fpga-verilog-tutorial`目录中有对应的例程
 
-# 产品链接
+
+
+
+
 
 
 # 参考
@@ -153,7 +144,6 @@ http://www.clifford.at/icestorm/
 ### examples
 https://github.com/damdoy/ice40_ultraplus_examples  
 https://github.com/icebreaker-fpga/icebreaker-examples
-https://github.com/wuxx/icesugar
 
 ### SpinalHDL 教程
 https://spinalhdl.github.io/SpinalDoc-RTD/SpinalHDL/Getting%20Started/index.html
