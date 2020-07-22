@@ -3,8 +3,6 @@ OpeniCE
 [中文](./README.md)
 
 * [来源 ](#来源 ) 
-* [芯片规格](#芯片规格)
-
 * [OpenICE介绍](#OpenICE介绍) 
 * [芯片规格](#芯片规格)
 * [硬件说明](#硬件说明)
@@ -54,6 +52,7 @@ http://www.clifford.at/icestorm/
 Lattice的iCE40系列芯片在国外很受欢迎，大部分的开发环境都是开源的，不需要担心License所带来的限制，只需要将工具链进行安装之后就可以进行FPGA的开发之路，典型的基于iCE40系列的开源开发板有iCEBreaker、UPduino、BlackIce、iCEstick、TinyFPGA 等。
 
 每个开发版对比如下：
+表格来源：https://www.crowdsupply.com/1bitsquared/icebreaker-fpga
 
 |                                         | iCEBreaker                       | TinyFPGA BX        | Tomu FPGA          | Lattice ICEstick              | UPDuino v2.0                  | ICE40UP5K Breakout            | Alhambra II                  | ICE40HX8K Breakout            |
 | :-------------------------------------- | :------------------------------- | :----------------- | :----------------- | :---------------------------- | :---------------------------- | :---------------------------- | :--------------------------- | :---------------------------- |
@@ -106,7 +105,7 @@ OpenICE 是基于Lattice iCE40UP5k设计的开源FPGA开发板，开发板以Ard
 
 整版的原理框图如下：
 
-![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/OpenICE.jpg?raw=true)
+![icesugar](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/doc/%E6%A1%86%E5%9B%BE.png?raw=true)
 
 PCB截图如下：
 
