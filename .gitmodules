@@ -7,3 +7,6 @@
 [submodule "demo/Refence/picorv32/picorv32"]
 	path = demo/Refence/picorv32/picorv32
 	url = https://github.com/cliffordwolf/picorv32.git
+[submodule "demo/Refence/VexRiscv/VexRiscv"]
+	path = demo/Refence/VexRiscv/VexRiscv
+	url = https://github.com/wuxx/VexRiscv.git
