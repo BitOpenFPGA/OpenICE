@@ -1,0 +1,6 @@
+[submodule "demo/Refence/up5k_6502/up5k_6502"]
+	path = demo/Refence/up5k_6502/up5k_6502
+	url = https://github.com/emeb/up5k_6502.git
+[submodule "demo/Refence/up5k_6502/up5k_6502"]
+	path = demo/Refence/up5k_6502/up5k_6502
+	url = https://github.com/emeb/up5k_6502.git
