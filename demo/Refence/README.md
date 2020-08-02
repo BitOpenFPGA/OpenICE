@@ -1,10 +1,15 @@
 # picorv32  
 https://github.com/cliffordwolf/picorv32.git
 ## build & run
-`picocom -b 115200 /dev/ttyACM0`
-`make icesprog`
+`picocom -b 115200 /dev/ttyUSB0`
+`make `
+
+sudo icesprog `
 
 # VexRiscv
+
+# [OpenFPGA-ICE](https://github.com/OpenFPGA-ICE)
+
 https://github.com/wuxx/VexRiscv.git 
 ## build & run
 `picocom -b 115200 /dev/ttyACM0`

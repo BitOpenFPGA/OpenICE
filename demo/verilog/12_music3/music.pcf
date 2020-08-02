@@ -1,0 +1,4 @@
+set_io speaker 34
+
+set_io clk 35
+
