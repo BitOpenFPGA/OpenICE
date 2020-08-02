@@ -16,3 +16,6 @@
 [submodule "demo/Refence/litex-buildenv/litex-buildenv"]
 	path = demo/Refence/litex-buildenv/litex-buildenv
 	url = https://github.com/wuxx/litex-buildenv.git
+[submodule "demo/Refence/iceZ0mb1e/iceZ0mb1e"]
+	path = demo/Refence/iceZ0mb1e/iceZ0mb1e
+	url = https://github.com/wuxx/iceZ0mb1e.git
