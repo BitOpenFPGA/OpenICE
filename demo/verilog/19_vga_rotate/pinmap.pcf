@@ -1,0 +1,7 @@
+set_io --warn-no-port r0      4
+set_io --warn-no-port g0      43
+set_io --warn-no-port b0      3
+set_io --warn-no-port hsync   42
+set_io --warn-no-port vsync   36
+set_io --warn-no-port clk_out 27
+set_io --warn-no-port clk_in  35
