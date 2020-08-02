@@ -13,3 +13,6 @@
 [submodule "demo/Refence/icicle/icicle"]
 	path = demo/Refence/icicle/icicle
 	url = https://github.com/grahamedgecombe/icicle.git
+[submodule "demo/Refence/litex-buildenv/litex-buildenv"]
+	path = demo/Refence/litex-buildenv/litex-buildenv
+	url = https://github.com/wuxx/litex-buildenv.git
