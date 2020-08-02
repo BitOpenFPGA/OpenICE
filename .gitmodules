@@ -10,3 +10,6 @@
 [submodule "demo/Refence/VexRiscv/VexRiscv"]
 	path = demo/Refence/VexRiscv/VexRiscv
 	url = https://github.com/wuxx/VexRiscv.git
+[submodule "demo/Refence/icicle/icicle"]
+	path = demo/Refence/icicle/icicle
+	url = https://github.com/grahamedgecombe/icicle.git
