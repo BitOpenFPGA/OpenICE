@@ -1,8 +1,9 @@
-# Port of the MIST NES core to ice40
+# 基于开源FPGA-OpeniCE的NES游戏
 
-This port of the NES MIST core is currently designed for the upduino 
-board, with a VGA DAC and connection to a NES controller added.
-
+## 硬件连接
+所需硬件
+[PMOD VGA扩展板](https://github.com/OpenFPGA-ICE/OpenICE/tree/master/Hardware/PMOD_SubCard/VGA)
+[PMOD NES扩展板]()
 Currently it can run any NROM, MMC1, UNROM or CNROM game requiring 
 either less than 64kB PRG and CHR ROM, or less than 128kB PRG ROM and 
 8kB CHR RAM. Sound is a tiny bit big for the 5k UltraPlus so is not 
