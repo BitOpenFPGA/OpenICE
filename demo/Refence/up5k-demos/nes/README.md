@@ -1,30 +1,48 @@
 # 基于开源FPGA-OpeniCE的NES游戏
+![OpenNES](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/demo/Refence/up5k-demos/nes/image/%E5%B0%8F%E9%9C%B8%E7%8E%8BFC%E6%B8%B8%E6%88%8F%E6%9C%BA.jpg?raw=true)
 
 ## 硬件连接
 所需硬件
-[PMOD VGA扩展板](https://github.com/OpenFPGA-ICE/OpenICE/tree/master/Hardware/PMOD_SubCard/VGA)
-[PMOD NES扩展板]()
-Currently it can run any NROM, MMC1, UNROM or CNROM game requiring 
-either less than 64kB PRG and CHR ROM, or less than 128kB PRG ROM and 
-8kB CHR RAM. Sound is a tiny bit big for the 5k UltraPlus so is not 
-included. By removing all the mappers - and some registers needed for 
-reliable performance - you can  just about get it to fit  but it uses 
-every single PLB in the device.
+### [PMOD VGA扩展板](https://github.com/OpenFPGA-ICE/OpenICE/tree/master/Hardware/PMOD_SubCard/VGA)
+### [PMOD NES扩展板](https://github.com/OpenFPGA-ICE/OpenICE/tree/master/Hardware/PMOD_SubCard/NES)
+### FC手柄
+最好选用原装手柄。
 
-It would be much better suited to a 8k board with more external RAM. 
-Then you would have room for bigger games (up to the size of the board's 
-RAM), more mapper support (e.g. MMC3) and sound. The only changes needed 
-would be changing cart_mem to use external RAM instead of UltraPlus 
-SPRAM, and creating a new Makefile and pcf file.
+手柄的协议如图所示：
+![OpenNES](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/demo/Refence/up5k-demos/nes/image/FC%E6%89%8B%E6%9F%84%E4%BF%A1%E5%8F%B7%E5%AE%9A%E4%B9%89.jpg?raw=true)
+原理比较简单：协议共有3个信号，Latch、Clock、Data、Latch用于锁存按键值，给一个Latch高电平脉冲，然后在每个clock周期的低电平时读Data，即可依次读出8个按键的值，A、B、SELECT、START、Up、Down、Left、Right。VCC可以直接接3.3V即可。（注意实际上Clock只需7拍即可，Latch脉冲低电平后即可读出第一个按键A的值，后续7个Clock脉冲读出其他7个按键）
 
-'Streaming' games from SQI flash might be just about doable from a 
-timing point of view but I don't think there are enough PLBs available 
-at present on the 5k, and it would probably be quite a bit of work for 
-it to work reliably.
+### 扬声器
+将上诉硬件和主板按照下面图片连接
+![OpenNES](https://github.com/OpenFPGA-ICE/OpenICE/blob/master/demo/Refence/up5k-demos/nes/image/NES%20Games.png?raw=true)
+## 综合编译下载
+```
+git clone https://github.com/OpenFPGA-ICE/OpenICE/tree/master/demo/Refence/up5k-demos/nes
+cd nes
+make
+```
+make会综合出FC系统的bitstream文件nes.bin，使用icesprog可以进行烧录
 
-I'll probably port this to my icoBoard with a VGA PMOD at some point, 
-which could end up being a very nice platform for this.
+```sudo icesprog nes.bin```
 
-Credit to the original developer of the NES core, Ludvig Strigeus for 
-making such an awesome project! Like the original core this is licensed 
-under the GNU GPL.
+随后，需要将游戏ROM文件打包并烧录至flash偏移1M中，FC启动之后会从此处读ROM文件运行。
+```
+cd rom
+sudo chmod 777 nes2bin
+./nes2bin.py games/139.nes 139.bin
+sudo chmod 777 139.bin
+sudo icesprog -o 0x100000 139.bin
+```
+烧写的游戏是绿色军团，也可自行打包其他nes游戏，可以到[52nes](http://www.52nes.com/)下载其他游戏。
+<rom/games>下有以下几种游戏：
+超时空要塞无敌版             Beyondtime
+93超级魂斗罗(中文)          93-contra
+绿色兵团无限人                 76 
+绿色兵团金身无敌版          92
+赤色要塞无敌版                 139
+冒险岛经典版                     smb
+
+
+## 演示视频
+
+[B站演示视频](https://www.bilibili.com/video/bv1G54y1U7yN)
